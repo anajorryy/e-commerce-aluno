@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import { Produto } from '../produto/produto';
+import { signal} from '@angular/core';
+import { computed } from '@angular/core';
+import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 
 @Component({
   selector: 'app-lista-produtos',
-  imports: [Produto],
+  imports: [Produto,PrecoFormatadoPipe],
   templateUrl: './lista-produtos.html',
   styleUrl: './lista-produtos.css',
 })
 export class ListaProdutos {
- produtos = [
+  //!Lista com dados
+ produtos = signal ([
     { 
       nome: 'Teclado Gamer', 
       preco:149.00
@@ -29,8 +33,24 @@ export class ListaProdutos {
       nome: 'Headset Gamer', 
       preco:699.99
     }
-  ];
+  ]);
+//!Função apara exibir produtos selecionados pelo usuario no console
   exibirProduto (nome: string){
     console.log ('Produto Selecionado: ', nome);
   }
+//!função que adiciona produto usando metodo uptade()
+  adicionarProdutos(){
+    this.produtos.update(listaAtual => [...listaAtual,
+      {nome: 'Playstation 5', preco:3000}
+    ]);
+  }
+//! função que contabiliza a quantidade de produtos na lista
+totalProdutos = computed(() => this.produtos().length);
+//! função que calcula o valor total do metodo comput()
+valorTotal = computed(()=> 
+{return this.produtos().reduce((total, item) =>
+  total + item.preco,0
+
+)}
+);
 }
