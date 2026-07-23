@@ -1,11 +1,13 @@
-<h1>Minha Loja Virtual</h1>
+<h1>JORRY A PERFEITA😍💋💗</h1>
 
 <nav>
     <a routerLink="/">Home</a> |
-    <a routerLink="/produtos">produtos</a>|
-    <a routerLink="/carrinho"> carrinho </a>
+    <a routerLink="/produtos">Produtos</a>|
+    <a routerLink="/carrinho"> Carrinho </a>
 </nav>
-
 <hr />
-
+<button (click)="login()">Login</button>
+<button (click)="logout()">logout</button>
+<P>Status {{usuarioLogado() ? 'Logado' : 'Deslogado'}}</P>
+<hr>
 <router-outlet></router-outlet>
