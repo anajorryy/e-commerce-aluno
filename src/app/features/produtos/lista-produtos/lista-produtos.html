@@ -1,47 +1,44 @@
-<!-- Seção de Produtos -->
- <section>
-@for (item of produtos(); track item){
-    <app-produto 
-    [nome] = "item.nome" 
-    [preco] = "item.preco"
-    (produtoSelecionado)="exibirProduto($event)"
-    >
-    </app-produto>
-
-
-    <button (click)="adicionarAoCarrinho(item)">Adicionar ao
-    Carrinho</button>
-}
-
-<h2>
-    Produto selecionado
+<!-- <h2>
+    Produto selecionado:
     @if(produtoSelecionado()){
-        <strong style="color: green;">{{produtoSelecionado() | uppercase}}</strong>
+        <strong style="color: green">{{produtoSelecionado() | uppercase}}</strong>
     }@else{
         <span style="color: gray">Nenhum Produto Selecionado</span>
     }
 </h2>
-
-<p>
- <button aria-label="sshshshshgshhshihi" (click)="adicionarProdutos()">
-Adicionar Produto
-</button>
-</p>
-<p>
-    <button (click)="substituirProdutos()">
-    Substituir Lista
-</button>
-</p>
-<h2>total de produtos:{{totalProdutos()}}</h2>
-<h3>valor Total:{{valorTotal()| precoFormatado}}</h3>
- </section>
- <!-- Seleção do Carrinho -->
-<section>
-    <hr> />
-<h2>Carrinho:</h2>
-@for (item of carrinho(); track $index) {
-   <p>{{ item.nome }} - R$ {{ item.preco.toFixed(2) }}</p>
+@for(item of produtos(); track item){
+    <app-produto
+    [nome] ="item.nome"
+    [preco] = "item.preco"
+    (produtoSelecionado) ="exibirProduto($event)"
+    ></app-produto>
+    <button (click)="adicionarAoCarrinho(item)">Adicionar ao carrinho</button>
 }
-<p><strong>Itens no carrinho:</strong> {{ quantidadeCarrinho() }}</p>
-<p><strong>Total do Carrinho:</strong> R$ {{ totalCarrinho().toFixed(2) }}</p>
-</section>
+<p><button (click)="adicionarProduto()">Adicionar produto</button></p>
+<p><button (click)="substituirProdutos()">Substituir Produto</button></p>
+<h2>Total de produtos: {{totalProdutos()}}</h2>
+<h3>Valor total: {{valorTotal() | precoFormatado}}</h3> -->
+
+<h2>Produtos</h2>
+
+@if(carregando()){
+<p> Carregando produtos...</p>
+}
+@if(!carregando()){
+    @for(item of produtos(); track item){
+        <app-produto
+        [nome] = "item.nome"
+        [preco] = "item.preco"
+        >
+        </app-produto>
+        <button (click)="adicionarAoCarrinho(item)">Adicionar ao Carrinho</button>
+    }
+}
+<hr>
+<h2>Carrinho</h2>
+@for(item of carrinho(); track $index){
+    <p>{{item.nome}} - {{item.preco | precoFormatado}}</p>
+}
+<hr>
+<p><strong>Quantidade de itens no carrinho: </strong>{{ quantidadeCarrinho() }}</p>
+<p><strong>Valor total do carrinho: </strong>{{totalCarrinho() | precoFormatado}}</p>
