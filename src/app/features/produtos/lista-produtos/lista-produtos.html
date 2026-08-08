@@ -1,44 +1,47 @@
 <!--CONDIÇÃO E DECLARAÇÃO DE CORES-->
 <h2>Produtos</h2>
+
 <!--Estado 1: carregamento-->
 @if(carregando()){
     <p><strong>Carregando produtos, Aguarde...</strong></p>
 }
-<!--Estado 2: Erro-->
 
+<!--Estado 2: Erro-->
 @if(erro()){
     <p><strong style="color: red;">{{ erro() }}</strong></p>
     <button (click)="carregarProdutos()">Tente novamente</button>
 }
 @if(!carregando() && !erro()){
     <p><strong>Quantidade de produtos:</strong>{{ totalProdutos()}}</p>
-    <hr>
+    
+
+<section class="grid-produtos">
    @for(item of produtos();track $index){
     <app-produto
     [nome]="item.nome"
     [preco]="item.preco"
     (produtoSelecionado)="exibirProduto($event)"
-    (produtoAdicionado)="adicionarCarrinho($event)"
+    (produtoAdicionado)="adicionarAoCarrinho($event)"
     >
-
     </app-produto>
+
    }
+
+</section>
+
 }
 
 <section>
-<hr>
-<hr>
-<hr>
+
 <h2>Seu Carrinho</h2>
-@for(item of carrinho();track $index){
-    <p>{{item.nome | uppercase}} - {{item.preco}}</p>
+@for(item of carrinhoService.itens();track $index){
+    <p>{{item.nome | uppercase}} - {{item.preco | precoFormatado}}</p>
     
 }
 <hr>
-<h3><strong>Itens no Carrinho: {{quantidadeCarrinho()}}</strong></h3>
+<h3><strong>Itens no Carrinho: {{carrinhoService.quantidadeItens()}}</strong></h3>
 
-<h3><strong>Valor Total do Carrinho: {{valorCarrinho()}}</strong></h3>
+<h3><strong>Valor Total do Carrinho: {{carrinhoService.totalItens() | precoFormatado}}</strong></h3>
 
 <hr>
 </section>
-<p>A SEGUIR VEJA NOSSAS PROMOÇÕES DE HOJE ;)</p>
