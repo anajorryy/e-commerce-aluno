@@ -1,22 +1,24 @@
-import { Component } from '@angular/core';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {RouterLink} from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 import { CarrinhoService } from '../../../core/services/carrinho.service';
-import { inject } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
 @Component({
-  selector: 'app-header',
-  imports: [MatToolbarModule, MatButtonModule, RouterLink, ReactiveFormsModule],
-  templateUrl: './header.html',
-  styleUrl: './header.css',
+selector: 'app-header',
+imports: [MatToolbarModule, MatButtonModule, RouterLink],
+templateUrl: './header.html',
+styleUrl: './header.css',
 })
 export class Header {
-  nomeLoja = 'Loja da Ana Jorry';
-  
-  private carrinhoService = inject(CarrinhoService);
-  
-  quantidadeHeader = this.carrinhoService.quantidadeItens;
-
-
+private carrinhoService = inject(CarrinhoService);
+private authService = inject(AuthService);
+private router = inject(Router);
+quantidade = this.carrinhoService.quantidadeItens;
+estaLogado = this.authService.estaLogado;
+usuarioAtual = this.authService.usuarioAtual;
+sair() {
+this.authService.logout();
+this.router.navigateByUrl('/login');
+}
 }

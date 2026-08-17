@@ -139,7 +139,7 @@ carregarProdutos() {
 public carrinhoService = inject(CarrinhoService)
 
 quantidadeCarrinho = this.carrinhoService.quantidadeItens;
-totalCarrinho = this.carrinhoService.totalItens;
+totalCarrinho = this.carrinhoService.total;
 adicionarAoCarrinho(produto: {nome: string; preco: number;}){
   this.carrinhoService.adicionar(produto);
 }
