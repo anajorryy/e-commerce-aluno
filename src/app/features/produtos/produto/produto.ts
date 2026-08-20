@@ -1,36 +1,28 @@
-import { Component, Input, Output, EventEmitter, output } from '@angular/core';
-import { UpperCasePipe } from '@angular/common';
-import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
+import { CurrencyPipe } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-
+import { ItemCarrinho } from '../../../core/models/item-carrinho';
 @Component({
-  selector: 'app-produto',
-  imports: [UpperCasePipe, PrecoFormatadoPipe, MatButtonModule, MatCardModule],
-  templateUrl: './produto.html',
-  styleUrl: './produto.css',
+selector: 'app-produto',
+imports: [CurrencyPipe, MatButtonModule, MatCardModule],
+templateUrl: './produto.html',
+styleUrl: './produto.css',
 })
-
 export class Produto {
- //Entrada de dados de lista-produtos.ts
-  @Input() nome: string = '';
-  @Input() preco: number = 0;
-  
-  //Saída de dados de produtos selecionados para lista-produtos.ts
-  @Output() produtoSelecionado = new EventEmitter<string>();
-  
-    selecionarProduto() {
-      this.produtoSelecionado.emit(this.nome);
+@Input() nome: string = '';
+@Input() preco: number = 0;
+@Output() produtoSelecionado = new EventEmitter<string>();
+// O evento agora usa o tipo compartilhado ItemCarrinho.
+@Output() produtoAdicionado = new EventEmitter<ItemCarrinho>();
+selecionarProduto() {
+this.produtoSelecionado.emit(this.nome);
 }
-@Output() produtoAdicionado = new EventEmitter<{
-  nome: string;
-  preco: number;
-}>();
-
-adicionarCarrinho() {
-  this.produtoAdicionado.emit({
-    nome:this.nome,
-    preco:this.preco,
-  });
+adicionarAoCarrinho() {
+// O produto enviado ao carrinho segue o modelo compartilhado.
+this.produtoAdicionado.emit({
+nome: this.nome,
+preco: this.preco,
+});
 }
 }
