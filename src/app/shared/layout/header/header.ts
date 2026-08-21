@@ -5,18 +5,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { CarrinhoFacade } from '../../../core/facades/carrinho.facade';
 import { AuthFacade } from '../../../core/facades/auth.facade';
 @Component({
-selector: 'app-header',
+selector: 'app-Header',
 imports: [MatToolbarModule, MatButtonModule, RouterLink],
-templateUrl: './header.html',
-styleUrl: './header.css',
+templateUrl: './Header.html',
+styleUrl: './Header.css',
 })
 export class Header {
-// o Header deixa de acessar diretamente os services.
+// o der deixa de acessar diretamente os services.
 // Agora ele consome facades, que simplificam o acesso ao carrinho e à autenticação.
 private carrinhoFacade = inject(CarrinhoFacade);
 private authFacade = inject(AuthFacade);
 private router = inject(Router);
 // Sinais recebidos da facade do carrinho.
+nomeLoja = 'JORRY'
 quantidade = this.carrinhoFacade.quantidade;
 // Sinais recebidos da facade de autenticação.
 estaLogado = this.authFacade.estaLogado;

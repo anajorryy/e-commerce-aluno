@@ -1,8 +1,40 @@
-.container-principal{
-    padding: 16px;
-    max-width: 1200px;
-    margin:0 auto;
+:root {
+  --roxo: #7c3aed;
+  --roxo-escuro: #4c1d95;
+  --roxo-claro: #ede9fe;
+  --roxo-medio: #9333ea;
+  --branco: #ffffff;
+  --texto: #241333;
 }
-.bloco-controle{
-    margin-bottom: 16px
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: var(--texto);
+
+  background:
+    radial-gradient(
+      circle at top left,
+      #ede9fe 0%,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #faf5ff,
+      #f3e8ff
+    );
+
+  min-height: 100vh;
+}
+
+.container-principal {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 25px;
 }

@@ -1,12 +1,63 @@
-produto.css
-.produto-card{
-    margin: 10px;
-    height: 100%;
-    
+button {
+  background: linear-gradient(135deg, #b379e9, #aa65f0) !important;
+  color: white !important;
+
+  font-size: 11px !important;
+  font-weight: 600;
+
+  padding: 4px 10px !important;
+  min-height: 30px !important;
+
+  border-radius: 8px !important;
+  border: none;
+
+  margin-right: 0;
+
+  transition: all 0.2s ease;
 }
-mat-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+
+button:hover {
+  background: linear-gradient(135deg, #ab60f1, #af74e6) !important;
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(168, 85, 247, 0.3);
+}
+
+
+/* Nome e preço lado a lado */
+.produto-titulo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+
+/* Estilo do preço */
+.produto-preco {
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
+/* Área dos botões */
+mat-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  /* diminui o espaço entre os botões */
+  gap: 80px !important;
+
+  padding: 5px 10px !important;
+
+  /* impede que o conteúdo ultrapasse o card */
+  box-sizing: border-box;
+}
+
+
+/* Card de cada produto */
+mat-card {
+  margin-bottom: 10px;
+  box-sizing: border-box;
 }

@@ -8,7 +8,7 @@ export class CarrinhoFacade {
 // A facade continua sendo a camada usada pelos componentes.
 // Os componentes não precisam conhecer os detalhes internos do CarrinhoService.
 private carrinhoService = inject(CarrinhoService);
-// Aula 32: sinais públicos de leitura usados pelo header, carrinho e checkout.
+// Aula 32: sinais públicos de leitura usados pelo der, carrinho e checkout.
 itens = this.carrinhoService.itens;
 quantidade = this.carrinhoService.quantidade;
 total = this.carrinhoService.total;

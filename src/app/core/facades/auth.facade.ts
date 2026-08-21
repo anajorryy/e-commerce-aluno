@@ -5,7 +5,7 @@ providedIn: 'root',
 })
 export class AuthFacade {
 // A facade centraliza o acesso da aplicação à autenticação.
-// Componentes, guards e header passam a usar esta camada simplificada.
+// Componentes, guards e der passam a usar esta camada simplificada.
 private authService = inject(AuthService);
 // Sinais de autenticação expostos para leitura.
 usuarioAtual = this.authService.usuarioAtual;
