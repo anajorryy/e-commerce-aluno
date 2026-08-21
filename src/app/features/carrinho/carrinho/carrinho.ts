@@ -13,7 +13,7 @@ export class Carrinho {
 carrinhoFacade = inject(CarrinhoFacade);
 removerItem(indice: number) {
 // Remove um item específico da lista.
-this.carrinhoFacade.removerItem(indice);
+this.carrinhoFacade.limparCarrinho(indice);
 }
 limparCarrinho() {
 // Limpa todos os itens do carrinho.
